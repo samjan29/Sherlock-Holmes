@@ -1,15 +1,17 @@
 from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
-import requests
-
 from pymongo import MongoClient
 client = MongoClient('mongodb+srv://test:sparta@cluster0.wycyfhs.mongodb.net/Cluster0?retryWrites=true&w=majority')
 db = client.dbsparta
 
+import base64, io
+
+from PIL import Image
+
 
 @app.route('/')
-def home():
+def index():
     return render_template('index.html')
 
 @app.route('/quizList', methods=['GET'])
@@ -25,29 +27,34 @@ def go_present():
 
 @app.route('/presentForm', methods=['POST'])
 def quiz_solve():
-    img = request.form['quiz_img']
+    img_data = request.form['quiz_img']
     ans = request.form['quiz_ans']
 
-    # img 저장 구현해야 함
-    
+    all_quiz = list(db.quiz.find({}, {'_id': False}))   # 한글    ㄹ
 
-    all_quiz = list(db.quiz.find({}, {'_id': False}))
-
-    key = 0
+    key = 1
 
     if len(all_quiz) != 0:
-        key = all_quiz[len(all_quiz) - 1]['key'] + 1
+        key = all_quiz[len(all_quiz) - 1]['quiz_key'] + 1
+
+    # img 저장 구현해야 함
+    image_data = base64.b64decode(img_data.split(',')[1])
+    byte_io = io.BytesIO(image_data)
+    img = Image.open(byte_io)
+    img.save('static/image/' + ans + '.png', 'png')
 
     doc = {
         "quiz_key": key,
         "quiz_ans": ans,
-        "img": img,
+        "img": ans,     # 삭제
         "count": 0,
         "ans_count": 0,
         "like": 0
     }
 
     db.quiz.insert_one(doc)
+
+    return jsonify({'msg': '제추'})
 
 
 @app.route('/quizSolve')
@@ -60,12 +67,20 @@ def get_quiz():
     quiz_key = request.url.split('=')[1]
     quiz = db.quiz.find_one({'quiz_key': int(quiz_key)},{'_id':False})
 
-    return jsonify({'quiz': quiz})
+    return jsonify({'ans': quiz['quiz_ans']})
 
 
 @app.route('/sad')
 def go_sad():
     return render_template('wrong.html')
+
+@app.route('/showAnswer', methods=['GET'])
+def get_ans():
+
+    quiz_key = request.url.split('?')[1]
+    quiz = db.quiz.find_one({'quiz_key': int(quiz_key)},{'_id':False})
+
+    return jsonify({'ans': quiz['quiz_ans']})
 
 @app.route('/happy')
 def go_happy():
@@ -74,7 +89,3 @@ def go_happy():
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
-
-
-
-
