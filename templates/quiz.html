@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <meta charset = "UTF-8">
+        <title>Sherlock-Holmes</title>
+        <link rel = 'stylesheet' type = 'text/css' href = "{{ url_for('static', filename='css/quiz.css') }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src = "{{ url_for('static', filename='js/quiz.js') }}"></script>
+    </head>
+    <body>
+        <header class = 'container'>
+            <a href = "{{ url_for('index') }}" class = 'title'>SHERLOCK HOLMES</a>
+        </header>
+            <section class = 'container'>
+                <div class = 'info'>
+                    <h1>그림이 무엇을 나타낼까요?</h1>
+                    <p>정답을 맞춰보세요.</p>
+                </div>
+                <div class = 'loadCanvas'>
+                </div>
+                <form>
+                    <input type = 'text' placeholder = '정답을 입력해 주세요.'>
+                    <input type = 'submit' value = '맞추기' id = 'solve'>
+                    <input type = 'submit' value = '정답 확인하기' id = 'showAnswer'>
+                </form>
+                <div class = 'wrong_rate'>
+                    
+                </div>
+            </section>
+        <footer>
+        </footer>
+    </body>
+</html>
