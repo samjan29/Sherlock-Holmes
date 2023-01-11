@@ -13,6 +13,7 @@
 }
 
 header.container {
+    position : absolute;
     width : 100%;
     height : 64px;
     display : flex;
@@ -25,6 +26,18 @@ header.container {
 
 header.container > a {
     text-decoration : none;
+}
+
+.container > div > h2 {
+    font-size : 64px;
+    font-weight : 900;
+    margin-bottom : 16px;
+    color : #FFA800;
+}
+
+.container > div > p {
+    font-size : 16px;
+    font-weight : 400;
 }
 
 .title {
@@ -45,8 +58,4 @@ section.container > div {
     flex-direction : column;
     width : 100vw;
     height : 100vh;
-}
-
-footer {
-    margin-top : 64px;
 }
