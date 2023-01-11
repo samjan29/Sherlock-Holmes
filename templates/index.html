@@ -1,56 +1,28 @@
+<!DOCTYPE html>
 <html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drawing app</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-            color: white;
-        }
-
-        .container {
-            height: 100%;
-            display: flex;
-        }
-
-        #toolbar {
-            display: flex;
-            flex-direction: column;
-            width: 100px;
-            background-color: black;
-        }
-
-        #toolbar * {
-            margin-bottom: 5px;
-        }
-
-        #toolbar input {
-            width: 100%;
-        }
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-
-<body>
-    <section class="container">
-        <div id="toolbar">
-            <label for="stroke">Stroke</label>
-            <input id="stroke" name='stroke' type="color">
-            <label for="lineWidth">Line Width</label>
-            <input id="lineWidth" name='lineWidth' type="number" value="5">
-            <button id="clear">Clear</button>
-            <button id="upload-btn">Upload Image</button>
-<!--            <button id="show-btn">Show Image</button>-->
-        </div>
-        <div class="drawing-board">
-            <canvas id="drawing-board"></canvas>
-        </div>
-    </section>
-    <script src="/static/app.js"></script>
-</body>
-
+    <head> 
+        <meta charset = "UTF-8">
+        <title>Sherlock-Holmes</title>
+        <link rel = 'stylesheet' type = 'text/css' href = "{{ url_for('static', filename='css/index.css') }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src = "{{ url_for('static', filename='js/index.js') }}"></script>
+    </head>
+    <body>
+        <header class = 'container'>
+            <a href = "{{ url_for('index') }}" class = 'title'>SHERLOCK HOLMES</a>
+        </header>
+            <section class = 'container'>
+                <div class = 'info'>
+                    <h1>정답을 맞춰보세요!</h1>
+                    <a href = "{{ url_for('present') }}" title = '문제 출제하기'><button>문제 출제하기</button></a>
+                    <p>출제자의 그림을 보고 어떤 그림인지 추측해보세요.</p>
+                </div>
+                <div class = 'quizList'>
+                    <ul>
+                    </ul>
+                </div>
+            </section>
+        <footer>
+        </footer>
+    </body>
 </html>
