@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawing app</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            color: white;
+        }
+
+        .container {
+            height: 100%;
+            display: flex;
+        }
+
+        #toolbar {
+            display: flex;
+            flex-direction: column;
+            width: 100px;
+            background-color: black;
+        }
+
+        #toolbar * {
+            margin-bottom: 5px;
+        }
+
+        #toolbar input {
+            width: 100%;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <section class="container">
+        <div id="toolbar">
+            <label for="stroke">Stroke</label>
+            <input id="stroke" name='stroke' type="color">
+            <label for="lineWidth">Line Width</label>
+            <input id="lineWidth" name='lineWidth' type="number" value="5">
+            <button id="clear">Clear</button>
+            <button id="upload-btn">Upload Image</button>
+<!--            <button id="show-btn">Show Image</button>-->
+        </div>
+        <div class="drawing-board">
+            <canvas id="drawing-board"></canvas>
+        </div>
+    </section>
+    <script src="/static/app.js"></script>
+</body>
+
+</html>
