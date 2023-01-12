@@ -88,6 +88,12 @@ section.container {
     margin-top : 16px;
 }
 
+.quizList img{
+    width : 360px;
+    height : 240px;
+    border-radius : 8px;
+}
+
 footer {
     margin-top : 64px;
 }

@@ -1,4 +1,3 @@
-
 * {
 	margin :0;
 	padding :0;
@@ -25,6 +24,10 @@ header.container {
     font-weight : 800;
     position:absolute;
 }
+header.container > a {
+    text-decoration : none;
+}
+
 .title {
     width : 736px;
     margin : 0 auto;
@@ -42,30 +45,32 @@ section.container {
     transition:all 300ms;
 }
 .wrong {
-    font-size:100px;
-    font-weight: bold;
-    color:#FFA800;
+    font-size : 64px;
+    font-weight : 900;
+    color : #FFA800;
+    margin-bottom : 16px;
 }
 .sub {
-    margin-top:30px;
-    font-size:20px;
+    font-size : 16px;
+    font-weight : 400;
+    margin-bottom : 16px;
 }
 .answer {
-    margin:30px 0px;
-    font-size:40px;
-    font-weight: bolder;
+    font-size : 24px;
+    font-weight : 700;
 }
 .answer__correct{
     color:#FFA800;
 }
 
 .list-btn > button {
-    font-size:18px;
-    color:white;
+    font-size : 16px;
+    color : white;
     background-color: #FFA800;
-    border:none;
-    padding:10px 10px;
-    border-radius: 5px;
+    border : none;
+    padding : 8px;
+    margin-top : 16px;
+    border-radius : 8px;
     box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, .15);
 }
 .list-btn > button:hover {
