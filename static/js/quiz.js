@@ -25,6 +25,6 @@ $(document).ready(function(){
     })
 
     showAnswer.addEventListener("click", () => {
-        location.href = "/sad?1"
+        location.href = "/sad?"+key;
     })
 });
