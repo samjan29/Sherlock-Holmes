@@ -3,13 +3,14 @@
     <head> 
         <meta charset = "UTF-8">
         <title>Sherlock-Holmes</title>
-        <link rel = 'stylesheet' type = 'text/css' href = "{{ url_for('static', filename='css/quiz.css') }}">
+        <link rel = 'stylesheet' type = 'text/css' href = "../static/css/quiz.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        <script src = "{{ url_for('static', filename='js/quiz.js') }}"></script>
+
+        <script src = "../static/js/quiz.js"></script>
     </head>
     <body>
         <header class = 'container'>
-            <a href = "{{ url_for('index') }}" class = 'title'>SHERLOCK HOLMES</a>
+            <a href = "/" class = 'title'>SHERLOCK HOLMES</a>
         </header>
             <section class = 'container'>
                 <div class = 'info'>
@@ -17,17 +18,17 @@
                     <p>정답을 맞춰보세요.</p>
                 </div>
                 <div class = 'loadCanvas'>
+                    <img>
                 </div>
-                <form>
-                    <input type = 'text' placeholder = '정답을 입력해 주세요.'>
-                    <input type = 'submit' value = '맞추기' id = 'solve'>
-                    <input type = 'submit' value = '정답 확인하기' id = 'showAnswer'>
-                </form>
-                <div class = 'wrong_rate'>
-                    
+
+                <div>
+                    <input id="input" type = 'text' placeholder = '정답을 입력해 주세요.'>
+                    <input type = 'button' value = '맞추기' id = 'solve'>
+                    <input type = 'button' value = '정답 확인하기' id = 'showAnswer'>
                 </div>
             </section>
         <footer>
         </footer>
+
     </body>
 </html>

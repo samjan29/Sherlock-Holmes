@@ -66,7 +66,11 @@ section.container {
     border-radius : 8px;
 }
 
-form {
+.loadCanvas > img {
+    border-radius: 8px;
+}
+
+.formClass {
     display : flex;
     flex-wrap : wrap;
     justify-content : space-between;
@@ -92,7 +96,7 @@ input[type=text]::placeholder {
 }
 
 
-input[type=submit] {
+input[type=button] {
     all : unset;
     appearance : none;
     display : inline-block;
@@ -107,7 +111,7 @@ input[type=submit] {
     text-align : center;
 }
 
-input[type=submit]:hover {
+input[type=button]:hover {
     background-color : #FFC960;
     transition : 0.2s;
 }

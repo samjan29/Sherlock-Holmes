@@ -3,19 +3,20 @@
     <head> 
         <meta charset = "UTF-8">
         <title>Sherlock-Holmes</title>
-        <link rel = 'stylesheet' type = 'text/css' href = "{{ url_for('static', filename='css/present.css') }}">
+        <link rel = 'stylesheet' type = 'text/css' href = "../static/css/present.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
         <header class = 'container'>
-            <a href = "{{ url_for('index') }}" class = 'title'>SHERLOCK HOLMES</a>
+            <a href = "/" class = 'title'>SHERLOCK HOLMES</a>
         </header>
             <section class = 'container'>
                 <div class = 'info'>
                     <h1>문제를 만들어 보세요!</h1>
                     <p>그림을 그려 문제를 출제해 보세요.</p>
                 </div>
-                <div class = 'drawingCanvas'>
-                </div>
+                <canvas class = 'drawingCanvas' id = 'drawingCanvasId'>
+                </canvas>
                 <div class = 'configWrapper'>
                     <div class = 'colorPalette'>
                         <h2>Color Palette</h2>
@@ -30,15 +31,16 @@
                     </div>
                     <div class = 'stroke'>
                         <h2>Stroke</h2>
-                        <input type = 'range' min = '1' max = '100' value = '50'>
+                        <input type = 'range' id = 'strokeValue' min = '0' max = '10' value = '5'>
                     </div>
                 </div>
                 <form>
-                    <input type = 'text' placeholder = '정답을 입력해 주세요.'>
-                    <input type = 'submit' value = '문제 출제하기'>
+                    <input id = 'answer' type = 'text' placeholder = '정답을 입력해 주세요.'>
+                    <input id = 'present' type = 'button' value = '문제 출제하기'>
                 </form>
             </section>
         <footer>
         </footer>
+        <script src = '../static/js/canvas.js'></script>
     </body>
 </html>
