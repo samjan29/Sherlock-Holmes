@@ -12,7 +12,7 @@ $(document).ready(function(){
                 const key = rows[i]['quiz_key']
 
                 $('.quizList > ul').append(`<a id="${key}" href = "/quizSolve?quizKey=${key}"><li>
-                                                                    <img src="/static/image/${image}.png">
+                                                                    <img src="../static/image/${image}.png">
                                                                     </li></a>`);
             }
         }
