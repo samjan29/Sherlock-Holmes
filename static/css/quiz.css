@@ -70,7 +70,7 @@ section.container {
     border-radius: 8px;
 }
 
-form {
+.formClass {
     display : flex;
     flex-wrap : wrap;
     justify-content : space-between;
