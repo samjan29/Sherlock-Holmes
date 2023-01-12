@@ -59,3 +59,21 @@ section.container > div {
     width : 100vw;
     height : 100vh;
 }
+
+.list-btn > button {
+    font-size : 16px;
+    color : white;
+    background-color: #FFA800;
+    border : none;
+    padding : 8px;
+    margin-top : 16px;
+    border-radius : 8px;
+    box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, .15);
+}
+.list-btn > button:hover {
+    background-color: #FFC960;
+    transition:200ms;
+}
+.list-btn > button:active {
+    transform: scale(1.1);
+}
