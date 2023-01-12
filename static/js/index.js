@@ -6,8 +6,11 @@ $(document).ready(function(){
         success: function (response) {
 
             const rows = response['quizList']
+            if (rows.length === 0) {
+                return
+            }
+            for (let i = rows.length - 1; i >= 0; i--) {
 
-            for (let i = 0; i < rows.length; i++) {
                 const image = rows[i]['quiz_ans']
                 const key = rows[i]['quiz_key']
 
