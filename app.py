@@ -30,7 +30,7 @@ def quiz_solve():
     img_data = request.form['quiz_img']
     ans = request.form['quiz_ans']
 
-    all_quiz = list(db.quiz.find({}, {'_id': False}))   # 한글    ㄹ
+    all_quiz = list(db.quiz.find({}, {'_id': False}))   # 한글
 
     key = 1
 
