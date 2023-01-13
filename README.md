@@ -1,3 +1,5 @@
-# sherlock-holmes
+# 항해99 OT 14조 토이 프로젝트 : <b style="color:#FFA800;">Sherlock Holmes</b>
 
-+ 게임에 관심 있는 4명이 만든 그림 맞추기 게임
+범인의 몽타주를 보고 범인이 누구인지 맞혀보자!
+
+### 수정중!
