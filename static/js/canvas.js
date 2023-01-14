@@ -27,9 +27,12 @@ function startPainting() {
     painting = true;
 }
 
+
+
 function onMouseMove(event) {
     const x = event.offsetX;
     const y = event.offsetY;
+
     if (!painting) {
         ctx.beginPath();
         ctx.moveTo(x, y);
@@ -38,6 +41,7 @@ function onMouseMove(event) {
         ctx.stroke();
     }
 }
+
 
 function handleColorClick(event) {
     const color = event.target.value;
@@ -56,12 +60,48 @@ if (range) {
     range.addEventListener("input", handleRangeChange);
 }
 
+
+//---터치 구현 구간---//
+function stoptouchPainting(event) {
+    painting = false;
+
+}
+
+function starttouchPainting(event) {
+    new_xx = event.targetTouches[0].pageX - 140;
+    new_yy = event.targetTouches[0].pageY - 175;
+    ctx.moveTo(new_xx,new_yy)
+    painting = true;
+}
+
+function onTouchMove(event) {
+
+    xx = event.targetTouches[0].pageX - 140;
+    yy = event.targetTouches[0].pageY - 175;
+
+    if (!painting) {
+        ctx.beginPath();
+        ctx.moveTo(xx, yy);
+    } else {
+        ctx.lineTo(xx,yy);
+        ctx.stroke();
+    }
+}
+
 if (canvas) {
     canvas.addEventListener("mousemove", onMouseMove);
     canvas.addEventListener("mousedown", startPainting);
     canvas.addEventListener("mouseup", stopPainting);
     canvas.addEventListener("mouseleave", stopPainting);
+    //---터치 구현 구간---//
+    canvas.addEventListener("touchmove", onTouchMove);
+    canvas.addEventListener("touchstart", starttouchPainting);
+    canvas.addEventListener("touchend", stoptouchPainting);
+    canvas.addEventListener("touchcancel", stoptouchPainting);
+    //---터치 구현 구간---//
 }
+
+//---터치 구현 구간---//
 
 function handleSaveClick() {
     const image = canvas.toDataURL("image/png");
