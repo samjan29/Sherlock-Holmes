@@ -3,10 +3,20 @@ const colors = document.querySelector('input[name="colorPalette"]:checked');
 const ctx = canvas.getContext("2d");
 const range = document.getElementById("strokeValue");
 const present = document.getElementById("present");
+const brush = document.getElementById("brush");
+const eraser = document.getElementById("eraser");
+const undo = document.getElementById("undo");
+const eraseAll = document.getElementById("eraseAll");
 
 const INITIAL_COLOR = colors;
 const CANVAS_SIZE_W = 736;
 const CANVAS_SIZE_H = 490;
+
+let painting = false;
+let isDown = false;
+let mode = brush;
+
+// let path = [];
 
 canvas.width = CANVAS_SIZE_W;
 canvas.height = CANVAS_SIZE_H;
@@ -17,25 +27,27 @@ ctx.fillRect(0, 0, CANVAS_SIZE_W, CANVAS_SIZE_H);
 ctx.strokeStyle = INITIAL_COLOR;
 ctx.lineWidth = range.value;
 
-let painting = false;
-
-function stopPainting() {
-    painting = false;
-}
-
-function startPainting() {
+function startPainting(event) {
     painting = true;
+    isDown = false;
 }
 
 function onMouseMove(event) {
     const x = event.offsetX;
     const y = event.offsetY;
-    if (!painting) {
-        ctx.beginPath();
-        ctx.moveTo(x, y);
-    } else {
-        ctx.lineTo(x, y);
-        ctx.stroke();
+
+    if (mode === brush) {
+        if (!painting) {
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+        } else {
+            ctx.lineTo(x, y);
+            ctx.stroke();
+        }
+    }  else if (mode === eraser) {
+        if (painting) {
+            ctx.clearRect(x-ctx.lineWidth, y-ctx.lineWidth, ctx.lineWidth * 2, ctx.lineWidth * 2);
+        }
     }
 }
 
@@ -56,11 +68,40 @@ if (range) {
     range.addEventListener("input", handleRangeChange);
 }
 
+function handleBrushClick(event) {
+    mode = brush;
+}
+
+brush.addEventListener("click", handleBrushClick);
+
+function handleEraserClick(event) {
+    mode = eraser;
+}
+
+eraser.addEventListener("click", handleEraserClick);
+
+// function handleUndoClick(event) {
+//
+// }
+//
+// undo.addEventListener("click", handleUndoClick);
+
+function handleEraseAllClick(event) {
+    ctx.reset();
+}
+
+eraseAll.addEventListener("click", handleEraseAllClick);
+
 if (canvas) {
     canvas.addEventListener("mousemove", onMouseMove);
     canvas.addEventListener("mousedown", startPainting);
-    canvas.addEventListener("mouseup", stopPainting);
-    canvas.addEventListener("mouseleave", stopPainting);
+    canvas.addEventListener("mouseup", (event) => {
+        painting = false;
+        isDown = true;
+    });
+    canvas.addEventListener("mouseleave", (event) => {
+        painting = false;
+    });
 }
 
 function handleSaveClick() {
@@ -80,4 +121,3 @@ function handleSaveClick() {
 if (present) {
     present.addEventListener("click", handleSaveClick);
 }
-

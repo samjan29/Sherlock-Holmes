@@ -75,7 +75,6 @@ def get_quiz():
 
     return jsonify({'quiz': quiz})
 
-
 @app.route('/sad')
 def go_sad():
     return render_template('wrong.html')
