@@ -61,7 +61,6 @@ def quiz_solve():
 
     return jsonify({'msg': '출제 완료'})
 
-
 @app.route('/quizSolve')
 def go_quiz():
     return render_template('quiz.html')
@@ -73,7 +72,6 @@ def get_quiz():
     quiz = db.quiz.find_one({'quiz_key': int(quiz_key)},{'_id':False})
 
     return jsonify({'quiz': quiz})
-
 
 @app.route('/sad')
 def go_sad():
