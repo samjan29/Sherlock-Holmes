@@ -15,14 +15,19 @@ $(document).ready(function(){
     const showAnswer = document.getElementById('showAnswer')
 
     solve.addEventListener("click", (event)=> {
+        $('.incorrect').remove()
         const value = document.getElementById('input').value
         if (value == quiz['ans']){
             $(location).attr('href','/happy')
         }else {
-            alert("땡!")
+            // incorrect가 있으면 false반환
+            if ((document.getElementsByClassName('incorrect'))){
+                $('.formClass__answer').append(`<div class="incorrect">오답입니다</div>`)
+            }
             $('#input').focus()
         }
     })
+
 
     showAnswer.addEventListener("click", () => {
         location.href = "/sad?"+key;
