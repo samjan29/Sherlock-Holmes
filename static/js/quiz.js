@@ -27,8 +27,6 @@ $(document).ready(function(){
     showAnswer.addEventListener("click", () => {
         location.href = "/sad?"+key;
     })
-
-
 });
 
 function empty() {
