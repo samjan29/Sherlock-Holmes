@@ -6,8 +6,8 @@ $(document).ready(function(){
         url: "/getQuiz?quizKey="+key,
         data: {},
         success: function (response) {
-            ans = response['ans']
-            $('.loadCanvas img').attr('src','../static/image/'+ans+'.png')
+            quiz = response['quiz']
+            $('.loadCanvas img').attr('src','../static/image/'+ quiz['img'] +'.png')
         }
     })
 
@@ -16,7 +16,7 @@ $(document).ready(function(){
 
     solve.addEventListener("click", (event)=> {
         const value = document.getElementById('input').value
-        if (value == ans){
+        if (value == quiz['ans']){
             $(location).attr('href','/happy')
         }else {
             alert("땡!")
@@ -28,3 +28,7 @@ $(document).ready(function(){
         location.href = "/sad?"+key;
     })
 });
+
+function empty() {
+    document.getElementById("input").value ='';
+}

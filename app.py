@@ -5,7 +5,7 @@ from pymongo import MongoClient
 client = MongoClient('mongodb+srv://test:sparta@cluster0.wycyfhs.mongodb.net/Cluster0?retryWrites=true&w=majority')
 db = client.dbsparta
 
-import base64, io
+import base64, io, random, string
 
 from PIL import Image
 
@@ -41,12 +41,18 @@ def quiz_solve():
     image_data = base64.b64decode(img_data.split(',')[1])
     byte_io = io.BytesIO(image_data)
     img = Image.open(byte_io)
-    img.save('static/image/' + ans + '.png', 'png')
+
+    letters_set = string.ascii_letters
+    random_list = random.sample(letters_set, 10)
+    random_name = ''.join(random_list)
+    img_name = random_name + str(key)
+
+    img.save('static/image/' + img_name + '.png', 'png')
 
     doc = {
         "quiz_key": key,
         "quiz_ans": ans,
-        "img": ans,     # 삭제
+        "img": img_name,
         "count": 0,
         "ans_count": 0,
         "like": 0
@@ -54,7 +60,7 @@ def quiz_solve():
 
     db.quiz.insert_one(doc)
 
-    return jsonify({'msg': '제추'})
+    return jsonify({'msg': '출제 완료'})
 
 
 @app.route('/quizSolve')
@@ -67,7 +73,7 @@ def get_quiz():
     quiz_key = request.url.split('=')[1]
     quiz = db.quiz.find_one({'quiz_key': int(quiz_key)},{'_id':False})
 
-    return jsonify({'ans': quiz['quiz_ans']})
+    return jsonify({'quiz': quiz})
 
 
 @app.route('/sad')

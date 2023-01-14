@@ -97,3 +97,31 @@ section.container {
 footer {
     margin-top : 64px;
 }
+
+/*Add style go back button*/
+
+.back {
+    all : unset;
+    appearance : none;
+    position : absolute;
+    display : inline-block;
+    font-size : 16px;
+    font-weight : 900;
+    color : #FFA800;
+    border-radius : 8px;
+    padding : 10px 16px 6px 16px;
+    background-color : white;
+    box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, .15);
+    text-align : center;
+    margin-left : 16px;
+}
+
+.back:hover {
+    background-color : #ffeabf;
+    transition : 0.2s;
+}
+
+.back:active {
+    background-color : #ffca61;
+    transform: scale(1.1);
+}

@@ -11,7 +11,7 @@ $(document).ready(function(){
             }
             for (let i = rows.length - 1; i >= 0; i--) {
 
-                const image = rows[i]['quiz_ans']
+                const image = rows[i]['img']
                 const key = rows[i]['quiz_key']
 
                 $('.quizList > ul').append(`<a id="${key}" href = "/quizSolve?quizKey=${key}"><li>
