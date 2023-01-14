@@ -20,7 +20,6 @@ def quiz_list():
     quiz_list = list(db.quiz.find({}, {'_id': False}))
     return jsonify({'quizList': quiz_list})
 
-
 @app.route('/quizPresent')
 def go_present():
     return render_template('present.html')

@@ -68,16 +68,16 @@ function stoptouchPainting(event) {
 }
 
 function starttouchPainting(event) {
-    new_xx = event.targetTouches[0].pageX - 140;
-    new_yy = event.targetTouches[0].pageY - 175;
+    new_xx = event.targetTouches[0].pageX - 120;
+    new_yy = event.targetTouches[0].pageY - 185;
     ctx.moveTo(new_xx,new_yy)
     painting = true;
 }
 
 function onTouchMove(event) {
 
-    xx = event.targetTouches[0].pageX - 140;
-    yy = event.targetTouches[0].pageY - 175;
+    xx = event.targetTouches[0].pageX - 120;
+    yy = event.targetTouches[0].pageY - 185;
 
     if (!painting) {
         ctx.beginPath();
