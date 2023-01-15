@@ -3,6 +3,10 @@ const colors = document.querySelector('input[name="colorPalette"]:checked');
 const ctx = canvas.getContext("2d");
 const range = document.getElementById("strokeValue");
 const present = document.getElementById("present");
+const brush = document.getElementById("brush");
+const eraser = document.getElementById("eraser");
+const undo = document.getElementById("undo");
+const eraseAll = document.getElementById("eraseAll");
 
 const INITIAL_COLOR = colors;
 const CANVAS_SIZE_W = 736;
