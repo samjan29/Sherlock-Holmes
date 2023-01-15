@@ -303,3 +303,36 @@ footer {
     background-color : #ffca61;
     transform: scale(1.1);
 }
+
+.formClass__answer{
+    position:relative;
+}
+
+.validationMsg {
+    position: absolute;
+    top:50%;
+    right:16px;
+    color:#EB445A;
+    font-size: 16px;
+    font-weight: 700;
+    opacity: 0;
+    animation: fadeout 3s ease;
+    animation-fill-mode: forwards;
+    text-align: center;
+}
+
+@keyframes fadeout {
+	0% {
+        opacity: 1;
+        font-size: 20px;
+	}
+    5% {
+        font-size: 16px;
+    }
+	95% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

@@ -7,6 +7,7 @@ const brush = document.getElementById("brush");
 const eraser = document.getElementById("eraser");
 const undo = document.getElementById("undo");
 const eraseAll = document.getElementById("eraseAll");
+let isDrawn = false;
 
 const INITIAL_COLOR = colors;
 const CANVAS_SIZE_W = 736;
@@ -28,6 +29,7 @@ ctx.strokeStyle = INITIAL_COLOR;
 ctx.lineWidth = range.value;
 
 function startPainting(event) {
+    isDrawn = true;
     painting = true;
     isDown = false;
 }
@@ -101,14 +103,25 @@ function handleSaveClick() {
     const image = canvas.toDataURL("image/png");
     const answer = document.getElementById("answer").value;
 
-    $.ajax({
-        type: "POST",
-        url: "/presentForm",
-        data: {"quiz_img": image, "quiz_ans": answer},
-        success: function (response) {
-            $(location).attr('href', '/');
+    if (answer === "" || isDrawn === false) {
+        $('.validationMsg').remove()
+        $('.formClass__answer').append(`<div class="validationMsg">그림과 정답을 전부 입력해주세요</div>`)
+        $('#answer').focus()
+    } else {
+        if (confirm(`출제하시려는 정답이 '${answer}'(이)가 맞습니까?\n(확인 버튼을 누르시면 문제가 출제됩니다)`) === true) {
+            $.ajax({
+                type: "POST",
+                url: "/presentForm",
+                data: {"quiz_img": image, "quiz_ans": answer},
+                success: function (response) {
+                    $(location).attr('href', '/');
+                }
+            })
+            alert('성공적으로 문제가 출제되었습니다!');
+        } else {
+            return ;
         }
-    })
+    }
 }
 
 if (present) {
@@ -122,6 +135,7 @@ function stoptouchPainting(event) {
 }
 
 function starttouchPainting(event) {
+    isdrawn = true;
     new_xx = event.targetTouches[0].pageX - 120;
     new_yy = event.targetTouches[0].pageY - 185;
     ctx.moveTo(new_xx,new_yy)
